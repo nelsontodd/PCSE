@@ -14,4 +14,4 @@ clean:
 	$(RM) $(BUILD_DIR)/*.o $(BIN_DIR)/*
 
 hw1:
-	$(CC) -o $(BIN_DIR)/$@ -fopenmp $(SRC_1)/part1.c
+	icc -o $(BIN_DIR)/$@ -O2 -xHost -qopenmp $(SRC_1)/part1.c

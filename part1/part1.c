@@ -58,7 +58,7 @@ void main() {
   float  a  = 0.05, b = 0.1, c = 0.4, t = 0.1;
   double times[6], start, end;
   int county, countx;
-  int n  = 32768;
+  int n  = 16384;
 
   //Init our seed for random number generation
   srand(time(NULL));
