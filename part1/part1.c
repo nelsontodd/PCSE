@@ -5,8 +5,8 @@
 
 static void initialize(float *empty_arr, int n) {
   float random_float = 0.00;
-  int i, j    = 0;
-  int n2 = n+2;
+  long int i, j    = 0;
+  long int n2 = n+2;
   for (i = 0; i < n2; i++)
     for (j = 0; j < n2; j++) {
       random_float =(float) random()/RAND_MAX;
@@ -14,8 +14,8 @@ static void initialize(float *empty_arr, int n) {
     }
 }
 static float smooth(float *input_arr, float *output_arr, int n, float a, float b, float c) {
-  int i, j = 0;
-  int n2 = n+2;
+  long int i, j = 0;
+  long int n2 = n+2;
   float sum1, sum2, sum3;
   for (i = 1; i <=n; i++) {
     for (j = 1; j <=n; j++) {
@@ -32,7 +32,7 @@ static float smooth(float *input_arr, float *output_arr, int n, float a, float b
 }
 
 static void count(float *arr, int n, float threshold, int *counter) {
-  int i, j;
+  long int i, j;
   int local_counter = 0;
 #pragma omp parallel for reduction(+:local_counter)
   for (i = 1;   i <=n; i++) {
@@ -58,7 +58,7 @@ void main() {
   float  a  = 0.05, b = 0.1, c = 0.4, t = 0.1;
   double times[6], start, end;
   int county, countx;
-  int n  = 16384;
+  long int n  = 32768;
 
   //Init our seed for random number generation
   srand(time(NULL));
