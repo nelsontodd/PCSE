@@ -1,0 +1,22 @@
+Execution summary.
+Num elements in an array col                   : 32768
+Num inner elements in an array col             : 32766
+Num elements in an array                       : 1073741824
+Num inner elements in an array                 : 1073610756
+Num bytes used by an array (GB)                : 4.294967
+Num elements below threshold in array y        : 11655
+Fraction of elements below threshold in array y: 0.000011
+Num elements below threshold in array x        : 107376600
+Fraction of elements below threshold in array x: 0.100002
+Threshold value:                               : 0.100000
+
+Timing summary (Seconds).
+WALL: Alloc-X :  0.000331
+WALL: Alloc-Y :  0.000489
+WALL: Init-X  :  69.280848
+WALL: Smooth-Y:  0.726229
+WALL: Count-Y :  0.160064
+WALL: Count-X :  0.270079
+
+OMP information.
+Num threads: 4

@@ -17,6 +17,7 @@ static float smooth(float *input_arr, float *output_arr, int n, float a, float b
   long int i, j = 0;
   long int n2 = n+2;
   float sum1, sum2, sum3;
+#pragma omp parallel for private(sum1, sum2, sum3)
   for (i = 1; i <=n; i++) {
     for (j = 1; j <=n; j++) {
       sum1  =  *(input_arr + (i-1)*n2 + j-1) + *(input_arr + (i-1)*n2 + j+1) + *(input_arr + (i+1)*n2 + j-1) + *(input_arr + (i+1)*n2 + j+1);
