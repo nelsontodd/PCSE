@@ -1,0 +1,4 @@
+i. ./a.out (no numactl)
+ii. numactl --cpunodebind=0 --preferred=0 ./a.out
+iii. numactl --cpunodebind=0 --interleave=0,1 ./a.out
+iv. numactl --cpunodebind=0 --preferred=1 ./a.out
