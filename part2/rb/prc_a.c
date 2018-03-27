@@ -18,22 +18,28 @@ int main() {
 #pragma omp parallel private(nt)
 { nt = omp_get_num_threads(); if(nt<1) printf("NO print, OMP warmup.\n"); }
 #endif
-
-   for(i = 0; i < N-1; i+=2) {a[i]   = 0.0; a[i+1] = 1.0;}
-    
+   for(i = 0; i < N-1; i+=2) {
+     a[i]   = 0.0; a[i+1] = 1.0;
+   }
    t0 = gtod_timer();
     
+#pragma omp parallel shared(a)
+{
    do {
 
-      for (i = 1; i < N;   i+=2) a[i] = (a[i] + a[i-1]) / 2.0;
+#pragma omp single
+{
+      for (i = 1; i < N;   i+=2){
+        a[i] = (a[i] + a[i-1]) / 2.0;
+      }
       for (i = 0; i < N-1; i+=2) a[i] = (a[i] + a[i+1]) / 2.0;
-      
-       
       error=0.0; niter++;
-
+      fprintf(stderr, "Thread no: %i\n", omp_get_thread_num());
       for (i = 0; i < N-1; i++) error = error + fabs(a[i] - a[i+1]);
-       
+      fprintf(stderr, "Error: %f\n", error);
+}
    } while (error >= 1.0);
+}
  
    t1 = gtod_timer();
    time  = t1 - t0;
