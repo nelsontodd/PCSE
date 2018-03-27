@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <omp.h>
 
-#define N 30
+#define N 30000000
 
 double gtod_timer(void);    // timer prototype
 int c_setaffinity(int);     // affinity prototype
@@ -18,13 +18,9 @@ int main() {
 #pragma omp parallel private(nt)
 { nt = omp_get_num_threads(); if(nt<1) printf("NO print, OMP warmup.\n"); }
 #endif
-
-#pragma omp parallel for
    for(i = 0; i < N-1; i+=2) {
      a[i]   = 0.0; a[i+1] = 1.0;
-     fprintf(stderr,"for loop Thread ID: %i\n",omp_get_thread_num());
    }
-#pragma omp barrier
    t0 = gtod_timer();
     
 #pragma omp parallel
@@ -40,7 +36,7 @@ int main() {
        
       error=0.0; niter++;
 
-#pragma omp for
+#pragma omp for private(error)
       for (i = 0; i < N-1; i++) error = error + fabs(a[i] - a[i+1]);
        
    } while (error >= 1.0);
